@@ -1,0 +1,27 @@
+{
+  "name": "fijifarmed",
+  "version": "1.0.0",
+  "description": "a test bot to try and use with farmers",
+  "main": "app.js",
+  "dependencies": {
+    "azure-storage": "^2.2.1",
+    "botbuilder": "^3.8.4",
+    "dotenv": "^4.0.0",
+    "lodash": "^4.17.4",
+    "restify": "^5.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farmedPE/FijiFarmEd.git"
+  },
+  "author": "Tiaan Stals",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/farmedPE/FijiFarmEd/issues"
+  },
+  "homepage": "https://github.com/farmedPE/FijiFarmEd#readme"
+}

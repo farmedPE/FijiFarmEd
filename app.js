@@ -61,7 +61,7 @@ dialog.matches('endconvo', [
 
 dialog.matches('mainmenu', [
   function (session, results) {
-    session.beginDialog('/mainMenu', results)
+    session.beginDialog('/mainmenu', results)
   }
 ])
 
@@ -434,7 +434,7 @@ var data = {}
 //=========================//
 // present the user with a main menu of choices they can select from
 //=========================//
-bot.dialog('/mainMenu', [
+bot.dialog('/mainmenu', [
   function (session, results) {
     builder.Prompts.choice(session, 'I can do any of these, pick one!', ['Search for Crop Information', 'Search for Pest Information', 'Search for Disease ', 'Search for Pesticides', 'Search for Weather', 'Search for Fertilisers', 'The Market','Search for Machinery', 'Soil Information'])
   },
@@ -837,7 +837,29 @@ bot.dialog('/soil', [
 //=========================//
 //Greetings and general conversation
 //=========================//
+//help
+bot.dialog('/help', [
+    function (session) {
+        builder.Prompts.text(session, 'This is the FarmEd Chatbot, ask a question about farming or alternitevely type \'main menu\' for a menu!');
+    },
+]);
 
+//=========================//
+//crops
+//=========================//
+bot.dialog('/okra', [
+    function (session) {
+        builder.Prompts.confirm(session, 'Would you like to know more about okra?');
+    },
+    function (session, results){
+      if (results.response){
+        session.send("Okra test information")
+      }
+      else{
+        session.beginDialog('/mainmenu', results);
+      }
+    }
+]);
 
 bot.dialog('/pests', [
   function (session, results, next) {

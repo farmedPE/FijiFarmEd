@@ -33,8 +33,10 @@ bot.dialog('/', dialog);
 // LUIS Dialogs
 // =========================================================
 
-
-dialog.matches('Greeting', [
+//=========================//
+//Greetings and general conversation
+//=========================//
+dialog.matches('greeting', [
   // Step 1
    function (session) {
        builder.Prompts.text(session, 'Bula! What is your name?');
@@ -45,31 +47,19 @@ dialog.matches('Greeting', [
    }
 ]);
 
-dialog.matches('Crops', [
+dialog.matches('help', [
   function (session, results) {
-    session.beginDialog('/SearchCropInfo', results)
+    session.beginDialog('/help', results)
   }
 ])
 
-dialog.matches('Pest', [
-  function (session, results) {
-    session.beginDialog('/SearchPestInfo', results)
-  }
-])
-
-dialog.matches('Weather.getForecast', [
-  function (session, results) {
-    session.beginDialog('/SearchWeatherInfo', results)
-  }
-])
-
-dialog.matches('EndConvo', [
+dialog.matches('endconvo', [
   function (session, results) {
     session.send(' Bye!')
   }
 ])
 
-dialog.matches('MainMenu', [
+dialog.matches('mainmenu', [
   function (session, results) {
     session.beginDialog('/mainMenu', results)
   }
@@ -82,82 +72,774 @@ dialog.onDefault([
   }
 ])
 
+//=========================//
+//Crop Intents for General Information
+//=========================//
+dialog.matches('okra', [
+  function (session, results) {
+    session.beginDialog('/okra', results)
+  }
+])
+
+dialog.matches('pawpaw', [
+  function (session, results) {
+    session.beginDialog('/pawpaw', results)
+  }
+])
+
+dialog.matches('longbean', [
+  function (session, results) {
+    session.beginDialog('/longbean', results)
+  }
+])
+
+dialog.matches('pumpkin', [
+  function (session, results) {
+    session.beginDialog('/pumpkin', results)
+  }
+])
+
+dialog.matches('cabbage', [
+  function (session, results) {
+    session.beginDialog('/cabbage', results)
+  }
+])
+
+dialog.matches('cucumber', [
+  function (session, results) {
+    session.beginDialog('/cucumber', results)
+  }
+])
+
+dialog.matches('chilli', [
+  function (session, results) {
+    session.beginDialog('/chilli', results)
+  }
+])
+
+dialog.matches('cowpeas', [
+  function (session, results) {
+    session.beginDialog('/cowpeas', results)
+  }
+])
+
+dialog.matches('tomato', [
+  function (session, results) {
+    session.beginDialog('/tomato', results)
+  }
+])
+
+dialog.matches('eggplant', [
+  function (session, results) {
+    session.beginDialog('/eggplant', results)
+  }
+])
+
+dialog.matches('cassava', [
+  function (session, results) {
+    session.beginDialog('/cassava', results)
+  }
+])
+
+dialog.matches('yams', [
+  function (session, results) {
+    session.beginDialog('/yams', results)
+  }
+])
+
+dialog.matches('tobacco', [
+  function (session, results) {
+    session.beginDialog('/tobacco', results)
+  }
+])
+
+//=========================//
+//diseases intents
+//=========================//
+dialog.matches('nitrogendeficiency', [
+  function (session, results) {
+    session.beginDialog('/nitrogendeficiency', results)
+  }
+])
+
+dialog.matches('blackspot', [
+  function (session, results) {
+    session.beginDialog('/blackspot', results)
+  }
+])
+
+dialog.matches('anthracnose', [
+  function (session, results) {
+    session.beginDialog('/anthracnose', results)
+  }
+])
+
+dialog.matches('ringspot', [
+  function (session, results) {
+    session.beginDialog('/ringspot', results)
+  }
+])
+
+//=========================//
+//pest intents
+//=========================//
+dialog.matches('thrips', [
+  function (session, results) {
+    session.beginDialog('/thrips', results)
+  }
+])
+
+dialog.matches('whitefly', [
+  function (session, results) {
+    session.beginDialog('/whitefly', results)
+  }
+])
+
+dialog.matches('beanpodborer', [
+  function (session, results) {
+    session.beginDialog('/beanpodborer', results)
+  }
+])
+
+dialog.matches('cornearworm', [
+  function (session, results) {
+    session.beginDialog('/cornearworm', results)
+  }
+])
+
+dialog.matches('cottonbollworm', [
+  function (session, results) {
+    session.beginDialog('/cottonbollworm', results)
+  }
+])
+
+dialog.matches('cutworm', [
+  function (session, results) {
+    session.beginDialog('/cutworm', results)
+  }
+])
+
+dialog.matches('aphids', [
+  function (session, results) {
+    session.beginDialog('/aphids', results)
+  }
+])
+
+dialog.matches('scaleinsect', [
+  function (session, results) {
+    session.beginDialog('/scaleinsect', results)
+  }
+])
+
+dialog.matches('pestid', [
+  function (session, results) {
+    session.beginDialog('/pestid', results)
+  }
+])
+
+
+//=========================//
+//intents for pesticides
+//=========================//
+dialog.matches('orthene', [
+  function (session, results) {
+    session.beginDialog('/orthene', results)
+  }
+])
+
+dialog.matches('confidol', [
+  function (session, results) {
+    session.beginDialog('/confidol', results)
+  }
+])
+
+dialog.matches('multiguard', [
+  function (session, results) {
+    session.beginDialog('/multiguard', results)
+  }
+])
+
+dialog.matches('sunseed', [
+  function (session, results) {
+    session.beginDialog('/sunseed', results)
+  }
+])
+
+dialog.matches('rabon', [
+  function (session, results) {
+    session.beginDialog('/rabon', results)
+  }
+])
+
+dialog.matches('rogor', [
+  function (session, results) {
+    session.beginDialog('/rogor', results)
+  }
+])
+
+dialog.matches('glyphosate', [
+  function (session, results) {
+    session.beginDialog('/glyphosate', results)
+  }
+])
+
+//=========================//
+//intents for fertilisers
+//=========================//
+dialog.matches('hydrocomplex', [
+  function (session, results) {
+    session.beginDialog('/hydrocomplex', results)
+  }
+])
+
+dialog.matches('urea', [
+  function (session, results) {
+    session.beginDialog('/urea', results)
+  }
+])
+
+dialog.matches('npk', [
+  function (session, results) {
+    session.beginDialog('/npk', results)
+  }
+])
+
+dialog.matches('borex', [
+  function (session, results) {
+    session.beginDialog('/borex', results)
+  }
+])
+
+//=========================//
+//function to identify machinery
+//=========================//
+dialog.matches('tractor', [
+  function (session, results) {
+    session.beginDialog('/tractor', results)
+  }
+])
+
+dialog.matches('waterpump', [
+  function (session, results) {
+    session.beginDialog('/waterpump', results)
+  }
+])
+
+dialog.matches('seeder', [
+  function (session, results) {
+    session.beginDialog('/seeder', results)
+  }
+])
+
+dialog.matches('rotaryhoe', [
+  function (session, results) {
+    session.beginDialog('/rotaryhoe', results)
+  }
+])
+
+dialog.matches('discplough', [
+  function (session, results) {
+    session.beginDialog('/discplough', results)
+  }
+])
+
+dialog.matches('harvester', [
+  function (session, results) {
+    session.beginDialog('/harvester', results)
+  }
+])
+
+//=========================//
+//function to check weather
+//=========================//
+dialog.matches('weathertoday', [
+  function (session, results) {
+    session.beginDialog('/weathertoday', results)
+  }
+])
+
+dialog.matches('weatherweek', [
+  function (session, results) {
+    session.beginDialog('/weatherweek', results)
+  }
+])
+
+dialog.matches('weathermonth', [
+  function (session, results) {
+    session.beginDialog('/weathermonth', results)
+  }
+])
+
+//=========================//
+//functions for buying/selling
+//=========================//
+dialog.matches('buyingseeds', [
+  function (session, results) {
+    session.beginDialog('/buyingseeds', results)
+  }
+])
+
+dialog.matches('buyingequipment', [
+  function (session, results) {
+    session.beginDialog('/buyingequipment', results)
+  }
+])
+
+dialog.matches('sellingseeds', [
+  function (session, results) {
+    session.beginDialog('/sellingseeds', results)
+  }
+])
+
+dialog.matches('sellingequipment', [
+  function (session, results) {
+    session.beginDialog('/sellingequipment', results)
+  }
+])
+
+dialog.matches('marketplacecrops', [
+  function (session, results) {
+    session.beginDialog('/marketplacecrops', results)
+  }
+])
+
+//=========================//
+//functions for soil
+//=========================//
+dialog.matches('soilph', [
+  function (session, results) {
+    session.beginDialog('/soilph', results)
+  }
+])
+
+dialog.matches('soiltype', [
+  function (session, results) {
+    session.beginDialog('/soiltype', results)
+  }
+])
+
+dialog.matches('soilissues', [
+  function (session, results) {
+    session.beginDialog('/soilissues', results)
+  }
+])
+//
+
 // =========================================================
-// Bots Dialogs
+// Bots Dialogs from the main menu
 // =========================================================
 
 var data = {}
 
+//=========================//
 // present the user with a main menu of choices they can select from
+//=========================//
 bot.dialog('/mainMenu', [
   function (session, results) {
-    builder.Prompts.choice(session, 'I can do any of these, pick one!', ['Search for Crop Information', 'Search for Pest Information', 'Search for Weather'])
+    builder.Prompts.choice(session, 'I can do any of these, pick one!', ['Search for Crop Information', 'Search for Pest Information', 'Search for Disease ', 'Search for Pesticides', 'Search for Weather', 'Search for Fertilisers', 'The Market','Search for Machinery', 'Soil Information'])
   },
   function (session, results) {
     switch (results.response.index) {
       case 0:
         // Initiate "Search By Day" dialog
-        session.beginDialog('/SearchCropInfo');
+        session.beginDialog('/crops');
         break;
       case 1:
         // Initiate "Search By Name" dialog
-        session.beginDialog('/SearchPestInfo');
+        session.beginDialog('/pest');
         break;
       case 2:
-        // Initiate "Search By Time" dialog
-        session.beginDialog('/SearchWeatherInfo');
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/diseases');
+        break;
+      case 3:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/pesticides');
+        break;
+      case 4:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/weather');
+        break;
+      case 5:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/fertiliser');
+        break;
+      case 6:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/market');
+        break;
+      case 7:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/machinery');
+        break;
+      case 8:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/soil');
         break;
     }
   }
 ])
 
-// either extract the LUIS entity or ask the user for a day to search -- display the results
-bot.dialog('/SearchCropInfo', [
-  function (session, results, next) {
-    // check if results.entities is undefiend
-    if (typeof results !== 'undefined' && results.entities) {
-      var day = builder.EntityRecognizer.findEntity(results.entities, 'Crop');
-      if (!day) {
-        builder.Prompts.text(session, 'What crop would you like to search for?');
-      } else {
-        next({ response: day.entity })
-      }
-    } else {
-      // prompt the user for the text manually
-      builder.Prompts.text(session, 'What crop would you like to search for?');
-    }
+//=========================//
+//function to identiy crop intent from the main menu
+//=========================//
+bot.dialog('/crops', [
+  function (session, results) {
+    builder.Prompts.choice(session, 'Which crop would you like information on?', ['Okra', 'Eggplant', 'Long Bean', 'Pumpkin', 'Cabbage', 'Chilli', 'Paw Paw', 'Tomato', 'Cucumber', 'Cow Peas', 'Cassava', 'Yams', 'Tobacco'])
   },
   function (session, results) {
-    if (results.response) {
-      session.send('Searching for information on %s. One moment.', results.response);
+    switch (results.response.index) {
+      case 0:
+        // Initiate "Search By Day" dialog
+        session.beginDialog('/okra');
+        break;
+      case 1:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/eggplant');
+        break;
+      case 2:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/longbean');
+        break;
+      case 3:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/pumpkin');
+        break;
+      case 4:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/cabbage');
+        break;
+      case 5:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/chilli');
+        break;
+      case 6:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/pawpaw');
+        break;
+      case 7:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/tomato');
+        break;
+      case 8:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/cucumber');
+        break;
+      case 9:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/cowpeas');
+        break;
+      case 10:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/cassava');
+        break;
+      case 11:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/yams');
+        break;
+      case 12:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/tobacco');
+        break;
     }
   }
 ])
 
-// either extract the LUIS entity or ask the user for a name to search -- display the results
-bot.dialog('/SearchPestInfo', [
-  function (session, results, next) {
-    if (typeof results !== 'undefined' && results.entities) {
-      var name = builder.EntityRecognizer.findEntity(results.entities, 'Diseases')
-      if (!name) {
-        builder.Prompts.text(session, 'What disease would you like to search about?');
-      } else {
-        next({ response: name.entity })
-      }
-    } else {
-      // prompt the user for the text manually
-      builder.Prompts.text(session, 'What disease would you like to search about?');
-    }
+//=========================//
+//function to identiy pest intent from the main menu
+//=========================//
+bot.dialog('/pest', [
+  function (session, results) {
+    builder.Prompts.choice(session, 'Which would you like information on?', ['Thrips', 'White Fly', 'Bean Pod Borer', 'Corn Earworm', 'Cotton Bollworm', 'Cutworm', 'Aphids', 'Scale Insect', 'Help me identify a pest'])
   },
   function (session, results) {
-    if (results.response) {
-      session.send('Searching for information on %s. One moment.', results.response);
-    }
+    switch (results.response.index) {
+      case 0:
+        // Initiate "Search By Day" dialog
+        session.beginDialog('/thrips');
+        break;
+      case 1:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/whitefly');
+        break;
+      case 2:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/beanpodborer');
+        break;
+      case 3:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/cornearworm');
+        break;
+      case 4:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/cottonbollworm');
+        break;
+      case 5:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/cutworm');
+        break;
+      case 6:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/aphids');
+        break;
+      case 7:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/scaleinsect');
+        break;
+      case 8:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/pestid');
+        break;
+      }
   }
 ])
 
-// either extract the LUIS entity or ask the user for a time to search -- display the results
-bot.dialog('/SearchWeatherInfo', [
+//=========================//
+// function to identity a disease intent from the main menu
+//=========================//
+bot.dialog('/diseases', [
+  function (session, results) {
+    builder.Prompts.choice(session, 'Which would you like information on?', ['Nitrogen Deficiency', 'Black Spot', 'Anthracnose', 'Ring Spot', 'Help me identify a disease'])
+  },
+  function (session, results) {
+    switch (results.response.index) {
+      case 0:
+        // Initiate "Search By Day" dialog
+        session.beginDialog('/nitrogendeficiency');
+        break;
+      case 1:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/blackspot');
+        break;
+      case 2:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/anthracnose');
+        break;
+      case 3:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/ringspot');
+        break;
+      case 4:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/diseaseid');
+        break;
+      }
+    }
+])
+
+//=========================//
+//fucntion to give info on pesticides
+//=========================//
+bot.dialog('/pesticides', [
+  function (session, results) {
+    builder.Prompts.choice(session, 'Which would you like information on?', ['Orthene', 'Confidol', 'Sunseed', 'Rabon', 'Rogor', 'Glyphosate'])
+  },
+  function (session, results) {
+    switch (results.response.index) {
+      case 0:
+        // Initiate "Search By Day" dialog
+        session.beginDialog('/orthene');
+        break;
+      case 1:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/confidol');
+        break;
+      case 2:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/sunseed');
+        break;
+      case 3:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/rabon');
+        break;
+      case 4:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/rogor');
+        break;
+      case 4:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/glyphosate');
+        break;
+      }
+    }
+])
+
+//=========================//
+//fucntion to identify a fertiliser intent
+//=========================//
+bot.dialog('/fertiliser', [
+  function (session, results) {
+    builder.Prompts.choice(session, 'Which would you like information on?', ['Thrips', 'White Fly', 'Bean Pod Borer', 'Corn Earworm', 'Cotton Bollworm', 'Cutworm', 'Aphids', 'Scale Insect', 'Help me identify a pest'])
+  },
+  function (session, results) {
+    switch (results.response.index) {
+      case 0:
+        // Initiate "Search By Day" dialog
+        session.beginDialog('/thrips');
+        break;
+      case 1:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/whitefly');
+        break;
+      case 2:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/beanpodborer');
+        break;
+      case 3:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/cornearworm');
+        break;
+      case 4:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/cottonbollworm');
+        break;
+      case 5:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/cutworm');
+        break;
+      case 6:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/aphids');
+        break;
+      case 7:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/scaleinsect');
+        break;
+      case 8:
+        // Initiate "Search By Time" dialog
+        session.beginDialog('/pestid');
+        break;
+      }
+  }
+])
+
+//=========================//
+//function to identify machinery
+//=========================//
+bot.dialog('/machinery', [
+  function (session, results) {
+    builder.Prompts.choice(session, 'Which would you like information on?', ['Tractors', 'Water Pumps', 'Seeders', 'Rotary Hoe', 'Harvester'])
+  },
+  function (session, results) {
+    switch (results.response.index) {
+      case 0:
+        // Initiate "Search By Day" dialog
+        session.beginDialog('/tractors');
+        break;
+      case 1:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/waterpumps');
+        break;
+      case 2:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/seeders');
+        break;
+      case 3:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/rotaryhoe');
+        break;
+      case 4:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/harvester');
+        break;
+      }
+    }
+])
+
+//=========================//
+//function to display weather info
+//=========================//
+bot.dialog('/weather', [
+  function (session, results) {
+    builder.Prompts.choice(session, 'Which would you like information on?', ['Weather for Today/Tomorrow', 'Weather for this Week', 'Weather for this month'])
+  },
+  function (session, results) {
+    switch (results.response.index) {
+      case 0:
+        // Initiate "Search By Day" dialog
+        session.beginDialog('/weathertoday');
+        break;
+      case 1:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/weatherweek');
+        break;
+      case 2:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/weathermonth');
+        break;
+      }
+    }
+])
+
+//=========================//
+//function to display soil info
+//=========================//
+bot.dialog('/market', [
+  function (session, results) {
+    builder.Prompts.choice(session, 'Which would you like information on?', ['Buying Seeds', 'Selling Seeds', 'Buying Equipment', 'Selling Equipment','Market Places for crops'])
+  },
+  function (session, results) {
+    switch (results.response.index) {
+      case 0:
+        // Initiate "Search By Day" dialog
+        session.beginDialog('/buyingseeds');
+        break;
+      case 1:
+        // Initiate "Search By Day" dialog
+        session.beginDialog('/sellingseeds');
+        break;
+      case 2:
+        // Initiate "Search By Day" dialog
+        session.beginDialog('/buyingequipment');
+        break;
+      case 3:
+        // Initiate "Search By Day" dialog
+        session.beginDialog('/sellingequipment');
+        break;
+      case 4:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/marketplacecrops');
+        break;
+      }
+    }
+])
+
+//=========================//
+//function to display soil info
+//=========================//
+bot.dialog('/soil', [
+  function (session, results) {
+    builder.Prompts.choice(session, 'Which would you like information on?', ['Soil PH', 'Soil Types', 'General Soil issues'])
+  },
+  function (session, results) {
+    switch (results.response.index) {
+      case 0:
+        // Initiate "Search By Day" dialog
+        session.beginDialog('/soilph');
+        break;
+      case 1:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/soiltype');
+        break;
+      case 2:
+        // Initiate "Search By Name" dialog
+        session.beginDialog('/soilissues');
+        break;
+      }
+    }
+])
+
+
+// =========================================================
+// Bots Dialogs to respond to specific queries
+// =========================================================
+
+//=========================//
+//Greetings and general conversation
+//=========================//
+
+
+bot.dialog('/pests', [
   function (session, results, next) {
     if (typeof results !== 'undefined' && results.entities) {
       var time = builder.EntityRecognizer.findEntity(results.entities, 'datetimeV2');

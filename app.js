@@ -216,6 +216,12 @@ dialog.matches('powderymildew', [
   }
 ])
 
+dialog.matches('sunscald', [
+  function (session, results) {
+    currentDisease = "Sunscald"
+    session.beginDialog('pestanddiseaseidentifier', results)
+  }
+])
 
 //=========================//
 //pest intents
@@ -695,7 +701,7 @@ bot.dialog('/pest', [
 //=========================//
 bot.dialog('/diseases', [
   function (session, results) {
-    builder.Prompts.choice(session, 'Which would you like information on?', ['Help me Identify a disease','Nitrogen Deficiency', 'Black Spot', 'Anthracnose', 'Ring Spot', 'Powdery Mildew', 'Black Mould', 'Early Blight'])
+    builder.Prompts.choice(session, 'Which would you like information on?', ['Help me Identify a disease','Nitrogen Deficiency', 'Black Spot', 'Anthracnose', 'Ring Spot', 'Powdery Mildew', 'Black Mould', 'Early Blight', 'Sunscald'])
   },
   function (session, results) {
     switch (results.response.index) {
@@ -738,7 +744,11 @@ bot.dialog('/diseases', [
         currentDisease = "Early Blight";
         session.beginDialog('diseaseGeneral');
         break;
-
+      case 7:
+        // Initiate "Search By Name" dialog
+        currentDisease = "Sunscald";
+        session.beginDialog('diseaseGeneral');
+        break;
       }
     }
 ])
@@ -1029,46 +1039,78 @@ cropPlantingGuideInformationArray['Tobacco'] = 'this is the planting guide infor
 var diseaseSymptomsArray = {};
 diseaseSymptomsArray['Nitrogen Deficiency'] = 'this is the symptoms information test for ' + currentCrop;
 diseaseSymptomsArray['Black Spot'] = 'this is the symptoms information test for ' + currentCrop;
+diseaseSymptomsArray['Stalk Rot'] = 'this is the symptoms information test for ' + currentCrop;
 diseaseSymptomsArray['Anthracnose'] = 'this is the symptoms information test for ' + currentCrop;
 diseaseSymptomsArray['Ring Spot'] = 'this is the symptoms information test for ' + currentCrop;
-diseaseSymptomsArray['Powdery Mildew'] = 'this is the symptoms information test for ' + currentCrop;
-diseaseSymptomsArray['Black Mould'] = 'this is the symptoms information test for ' + currentCrop;
-diseaseSymptomsArray['Early Blight'] = 'this is the symptoms information test for ' + currentCrop;
+diseaseSymptomsArray['Powdery Mildew'] = '\n-Fine white powder coating on leaves \n-Leaves roll upwards and dry out';
+diseaseSymptomsArray['Black Mould'] = '\n-Sooty to dark oily mould on underside and upper side of leaves.\
+\n-Infected leaves roll, wilt and fall to the ground';
+diseaseSymptomsArray['Early Blight'] = 'Circular leaf spots up to more than 1cm wide';
+diseaseSymptomsArray['Sunscald'] = 'White, sunken area of fruit that becomes paper-like and can turn into a wrinkled black/brown hole';
 
 //pest/Disease info for crops
 var diseaseTreatmentsArray = {};
 diseaseTreatmentsArray['Nitrogen Deficiency'] = 'this is the treatments information test for ' + currentCrop;
 diseaseTreatmentsArray['Black Spot'] = 'this is the treatments information test for ' + currentCrop;
+diseaseTreatmentsArray['Stalk Rot'] = 'this is the treatments information test for ' + currentCrop;
 diseaseTreatmentsArray['Anthracnose'] = 'this is the treatments information test for ' + currentCrop + '!';
 diseaseTreatmentsArray['Ring Spot'] = 'this is the treatments information test for ' + currentCrop;
-diseaseTreatmentsArray['Powdery Mildew'] = 'this is the symptoms information test for ' + currentCrop;
-diseaseTreatmentsArray['Black Mould'] = 'this is the symptoms information test for ' + currentCrop;
-diseaseTreatmentsArray['Early Blight'] = 'this is the symptoms information test for ' + currentCrop;
+diseaseTreatmentsArray['Powdery Mildew'] = '\n-Apply wettable sulphur products or chlorothalonil in early morning or evening. Spray every two weeks\
+\n-Use products containing horticultural oil or potassium bicarbonate \
+\n-Where the number of plants is small, use: normal strength milk diluted 1 part in 10 parts of water.';
+diseaseTreatmentsArray['Black Mould'] ='\n-Use copper Sprays';
+diseaseTreatmentsArray['Early Blight'] = '\n-Spray with copper compounds e.g. copper hydroxide';
+diseaseTreatmentsArray['Sunscald'] = 'Use a hose with a strong jet of water to remove thrips from the plants.\
+After harvest, destroy crop remains \
+Spray plant-derived pesticides such as derris, chilli, garlic, onion and papaya on underside of leaves\
+Spray white oil or soap solution on underside of leaves. A second application may be necessary after 3-4 weeks.\
+How to make white oil/soap solution:\
+White oil:\
+3 tablespoons (1/3 cup) cooking oil in 4 litres water.\
+½ teaspoon detergent soap.\
+Shake well and use.\
+Soap:\
+Use soap (pure soap, not detergent).\
+5 tablespoons of soap in 4 litres water, disease'
+
 
 //market info for crops
 var diseaseCommonCropsInformationArray = {};
 diseaseCommonCropsInformationArray['Nitrogen Deficiency'] = 'this is the commoncrops test for ' + currentCrop;
 diseaseCommonCropsInformationArray['Black Spot'] = 'this is the commoncrops test for ' + currentCrop;
+diseaseCommonCropsInformationArray['Stalk Rot'] = 'this is the commoncrops test for ' + currentCrop;
 diseaseCommonCropsInformationArray['Anthracnose'] = 'this is the commoncrops test for ' + currentCrop;
 diseaseCommonCropsInformationArray['Ring Spot'] = 'this is the commoncrops test for ' + currentCrop;
-diseaseCommonCropsInformationArray['Powdery Mildew'] = 'this is the symptoms information test for ' + currentCrop;
-diseaseCommonCropsInformationArray['Black Mould'] = 'this is the symptoms information test for ' + currentCrop;
+diseaseCommonCropsInformationArray['Powdery Mildew'] = 'Okra';
+diseaseCommonCropsInformationArray['Black Mould'] = 'Okra';
 diseaseCommonCropsInformationArray['Early Blight'] = 'this is the symptoms information test for ' + currentCrop;
+diseaseCommonCropsInformationArray['Sunscald'] = 'this is the symptoms information test for ' + currentCrop;
 
 //planting guide info for crops
 var diseasePreventionInformationArray = {};
 diseasePreventionInformationArray['Nitrogen Deficiency'] = 'this is the prevention information test for ' + currentCrop;
 diseasePreventionInformationArray['Black Spot'] = 'this is the prevention information test for ' + currentCrop;
+diseasePreventionInformationArray['Stalk Rot'] = 'this is the prevention information test for ' + currentCrop;
 diseasePreventionInformationArray['Anthracnose'] = 'this is the prevention information test for ' + currentCrop;
 diseasePreventionInformationArray['Ring Spot'] = 'this is the prevention information test for ' + currentCrop;
-diseasePreventionInformationArray['Powdery Mildew'] = 'this is the symptoms information test for ' + currentCrop;
-diseasePreventionInformationArray['Black Mould'] = 'this is the symptoms information test for ' + currentCrop;
-diseasePreventionInformationArray['Early Blight'] = 'this is the symptoms information test for ' + currentCrop;
+diseasePreventionInformationArray['Powdery Mildew'] = '\n-Plant in sunny places and choose areas with good air circulation \n-Rotate crops \n- Do not plant new crops next to those that have the disease';
+diseasePreventionInformationArray['Black Mould'] = '\n-Avoid overlap of okra in the same field\
+\n-Rotate with baby corn, maize, small grains or pulses\
+\n-Avoid overhead irrigation';
+diseasePreventionInformationArray['Early Blight'] = '\n-Use clean certified seeds that are not taken from plants that were previously infected.\
+\n-Burn crop debris/infected material after harvest,  Remove  weeds as they may serve as alternate hosts. \
+\n-Fields should not be planted with tomato or eggplant. Also avoid planting new plots of these vegetables alongside old ones .Rotate with corn or legumes.';
+diseasePreventionInformationArray['Sunscald'] = '\n-Once a week, check for pests/ diseases that destroy leaves which protect the fruit from sun\
+\n-Support plants using stakes, string or wire to reduce damage to leaves from wind';
+
 
 //information for pests
 //symptoms info for pests
 var pestSymptomsArray = {};
-pestSymptomsArray['Thrips'] = 'this is the symptoms information test for ' + currentCrop;
+pestSymptomsArray['Thrips'] = 'Speckled areas/black spots on leaves, Silvered appearance of older leaves,\
+Small insects on the underside of young leaves\
+Scarring on fruits';
+
 pestSymptomsArray['Whitefly'] = 'this is the symptoms information test for ' + currentCrop;
 pestSymptomsArray['Bean Pod Borer'] = 'this is the symptoms information test for ' + currentCrop;
 pestSymptomsArray['Corn Earworm'] = 'this is the symptoms information test for ' + currentCrop;
@@ -1076,7 +1118,11 @@ pestSymptomsArray['Cotton Bollworm'] = 'this is the symptoms information test fo
 pestSymptomsArray['Cutworm'] = 'this is the symptoms information test for ' + currentCrop;
 pestSymptomsArray['Aphids'] = 'this is the symptoms information test for ' + currentCrop;
 pestSymptomsArray['Scale Insect'] = 'this is the symptoms information test for ' + currentCrop;
-pestSymptomsArray['Flea Beetle'] = 'this is the symptoms information test for ' + currentCrop;
+pestSymptomsArray['Flea Beetle'] = '\n-Many small holes on leaves (1-5mm in size)\
+\n-Circular leaf spots up to more than 1cm wide';
+
+
+
 
 //pest/Disease info for crops
 var pestTreatmentsArray = {};
@@ -1088,7 +1134,10 @@ pestTreatmentsArray['Cotton Bollworm'] = 'this is the treatments information tes
 pestTreatmentsArray['Cutworm'] = 'this is the treatments information test for ' + currentCrop;
 pestTreatmentsArray['Aphids'] = 'this is the treatments information test for ' + currentCrop;
 pestTreatmentsArray['Scale Insect'] = 'this is the treatments information test for ' + currentCrop;
-pestTreatmentsArray['Flea Beetle'] = 'this is the symptoms information test for ' + currentCrop;
+pestTreatmentsArray['Flea Beetle'] = '\n-After harvest, collect and burn or bury as much of the crop as possible.\
+\n-Spray plant-derived products, such as derris or chilli (with the addition of soap)';
+
+
 
 //market info for crops
 var pestCommonCropsInformationArray = {};
@@ -1099,8 +1148,8 @@ pestCommonCropsInformationArray['Corn Earworm'] = 'this is the commoncrops test 
 pestCommonCropsInformationArray['Cotton Bollworm'] = 'this is the commoncrops test for ' + currentCrop;
 pestCommonCropsInformationArray['Cutworm'] = 'this is the commoncrops test for ' + currentCrop;
 pestCommonCropsInformationArray['Aphids'] = 'this is the commoncrops test for ' + currentCrop;
-pestCommonCropsInformationArray['Scale Insect'] = 'this is the commoncrops test for ' + currentCrop;
-pestCommonCropsInformationArray['Flea Beetle'] = 'this is the symptoms information test for ' + currentCrop;
+pestCommonCropsInformationArray['Scale Insect'] = 'Okra'
+pestCommonCropsInformationArray['Flea Beetle'] = 'Okra';
 
 //prevention info for crops
 var pestPreventionInformationArray = {};
@@ -1112,7 +1161,13 @@ pestPreventionInformationArray['Cotton Bollworm'] = 'this is the prevention info
 pestPreventionInformationArray['Cutworm'] = 'this is the prevention information test for ' + currentCrop;
 pestPreventionInformationArray['Aphids'] = 'this is the prevention information test for ' + currentCrop;
 pestPreventionInformationArray['Scale Insect'] = 'this is the prevention information test for ' + currentCrop;
-pestPreventionInformationArray['Flea Beetle'] = 'this is the symptoms information test for ' + currentCrop;
+pestPreventionInformationArray['Flea Beetle'] = 'Grow non-thrip attacked plants within the crop. For example, grow peppers between yard long beans.\
+Destroy weeds within and around crops to prevent build up of thrips';
+
+
+
+
+
 
 //pesticides inforamtion
 //usage info
@@ -1308,6 +1363,32 @@ bot.dialog('diseaseInfoGeneral', [
       }
 ])
 
+bot.dialog('diseaseInfoIdentifier', [
+  function(session, results) {
+      builder.Prompts.choice(session, 'It seems you could potentially have ' + currentDisease + '. What would you like to know about ' + currentDisease , ['Symptoms', 'Treatments', 'Common Crops', 'Prevention']);
+    },
+    function (session, results) {
+      switch (results.response.index) {
+        case 0:
+          // Initiate "Search By Day" dialog
+          session.send(diseaseSymptomsArray[currentDisease]);
+          break;
+          case 1:
+          // Initiate "Search By Name" dialog
+          session.send(diseaseTreatmentsArray[currentDisease]);
+          break;
+          case 2:
+          // Initiate "Search By Name" dialog
+          session.send(diseaseCommonCropsInformationArray[currentDisease]);
+          break;
+          case 3:
+          // Initiate "Search By Name" dialog
+          session.send(diseasePreventionInformationArray[currentDisease]);
+          break;
+        }
+      }
+])
+
 
 //asks the farmer to identify the crop that is sick and redirects to the diseaseidentifier dialog for that crop
 bot.dialog('pestAndDiseaseIdentifier', [
@@ -1324,7 +1405,7 @@ bot.dialog('pestAndDiseaseIdentifier', [
       case 1:
         // Initiate "Search By Name" dialog
         currentCrop = 'Eggplant';
-        session.beginDialog('cropGeneral');
+        session.beginDialog('eggplantDiseaseIdentifier');
         break;
       case 2:
         // Initiate "Search By Name" dialog
@@ -1339,7 +1420,7 @@ bot.dialog('pestAndDiseaseIdentifier', [
       case 4:
         // Initiate "Search By Name" dialog
         currentCrop = 'Cabbage';
-        session.beginDialog('cropGeneral');
+        session.beginDialog('cabbageDiseaseIdentifier');
         break;
       case 5:
         // Initiate "Search By Name" dialog
@@ -1354,7 +1435,7 @@ bot.dialog('pestAndDiseaseIdentifier', [
       case 7:
         // Initiate "Search By Time" dialog
         currentCrop = 'Tomato';
-        session.beginDialog('cropGeneral');
+        session.beginDialog('tomatoDiseaseIdentifier');
         break;
       case 8:
         // Initiate "Search By Time" dialog
@@ -1402,7 +1483,7 @@ bot.dialog('okraDiseaseIdentifier', [
       attachments: [
           {
               contentType: 'image/jpeg',
-              contentUrl:'http://www.pakissan.com/english/allabout/horticulture/images/okra01.jpg',
+              contentUrl:'http://www.infonet-biovision.org/sites/default/files/plant_health/cropsfruitsvegetables/1524_0.jpeg',
               name: 'okra'
           }
       ]});
@@ -1411,31 +1492,45 @@ bot.dialog('okraDiseaseIdentifier', [
       attachments: [
           {
               contentType: 'image/jpeg',
-              contentUrl:'http://www.infonet-biovision.org/sites/default/files/plant_health/cropsfruitsvegetables/1522_0.jpeg',
+              contentUrl:'https://www.extension.umn.edu/garden/insects/find/flea-beetles/img/flea-beetle-4.jpg',
+              name: 'okra'
+          }
+      ]});
+    session.send({
+      text: 'Photo 4',
+      attachments: [
+          {
+              contentType: 'image/jpeg',
+              contentUrl:'http://www.infonet-biovision.org/sites/default/files/plant_health/pestsdiseasesweeds/303.400x400_0.jpeg',
               name: 'okra'
           }
       ]});
       next();
   },
   function (session) {
-    builder.Prompts.choice(session, 'Which photo does it look like most?(Tell me 1, 2 or 3)', ['Photo 1', 'Photo 2', 'Photo 3', 'Photo 4'])
+    builder.Prompts.choice(session, 'Which photo does it look like most?(Tell me 1, 2, 3 etc.)', ['Photo 1', 'Photo 2', 'Photo 3', 'Photo 4'])
   },
   function (session, results) {
     switch (results.response.index) {
       case 0:
         // Initiate "Search By Day" dialog
         currentDisease= 'Powdery Mildew';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
-        currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
+        currentDisease= 'Black Mould';
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 2:
         // Initiate "Search By Time" dialog
-        currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        currentPest= 'Flea Beetle';
+        session.beginDialog('pestInfoIdentifier');
+        break;
+      case 3:
+        // Initiate "Search By Time" dialog
+        currentPest= 'Early Blight';
+        session.beginDialog('diseaseInfoIdentifier');
         break;
     }
   }
@@ -1449,7 +1544,7 @@ bot.dialog('eggplantDiseaseIdentifier', [
       attachments: [
           {
               contentType: 'image/jpeg',
-              contentUrl:'https://www.apsnet.org/publications/imageresources/PublishingImages/2013/fi00197.jpg',
+              contentUrl:'http://msue.anr.msu.edu/uploads/images/2-7-sunscald-on-eggplant-RON.jpg',
               name: 'okra'
           }
       ]});
@@ -1458,7 +1553,7 @@ bot.dialog('eggplantDiseaseIdentifier', [
       attachments: [
           {
               contentType: 'image/jpeg',
-              contentUrl:'http://www.pakissan.com/english/allabout/horticulture/images/okra01.jpg',
+              contentUrl:'https://extension.entm.purdue.edu/veg/insectID_pics/thumbs/Eggplant/EggPlantLeafFleaBtleDmg.jpg',
               name: 'okra'
           }
       ]});
@@ -1467,31 +1562,45 @@ bot.dialog('eggplantDiseaseIdentifier', [
       attachments: [
           {
               contentType: 'image/jpeg',
-              contentUrl:'http://www.infonet-biovision.org/sites/default/files/plant_health/cropsfruitsvegetables/1522_0.jpeg',
+              contentUrl:'http://www.pestnet.org/portals/32/Images/Insects/1070-Thrips%20Fiji/1073-Thrips-palmi.jpg',
+              name: 'okra'
+          }
+      ]});
+    session.send({
+      text: 'Photo 4',
+      attachments: [
+          {
+              contentType: 'image/jpeg',
+              contentUrl:'http://www.infonet-biovision.org/sites/default/files/plant_health/cropsfruitsvegetables/1598.400x400_8_0.jpeg?width=500&height=500&iframe=true',
               name: 'okra'
           }
       ]});
       next();
   },
   function (session) {
-    builder.Prompts.choice(session, 'Which photo does it look like most?(Tell me 1, 2 or 3)', ['Photo 1', 'Photo 2', 'Photo 3', 'Photo 4'])
+    builder.Prompts.choice(session, 'Which photo does it look like most?(Tell me 1, 2, 3 etc.)', ['Photo 1', 'Photo 2', 'Photo 3', 'Photo 4'])
   },
   function (session, results) {
     switch (results.response.index) {
       case 0:
         // Initiate "Search By Day" dialog
-        currentDisease= 'Nitrogen Deficiency';
-        session.beginDialog('diseaseInfoGeneral');
+        currentDisease= 'Sunscald';
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
-        currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
+        currentPest= 'Flea Beetle';
+        session.beginDialog('pestInfoIdentifier');
         break;
       case 2:
         // Initiate "Search By Time" dialog
-        currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        currentDisease= 'Thrips';
+        session.beginDialog('pestInfoIdentifier');
+        break;
+      case 3:
+        // Initiate "Search By Time" dialog
+        currentDisease= 'Thrips';
+        session.beginDialog('pestInfoIdentifier');
         break;
     }
   }
@@ -1537,17 +1646,17 @@ bot.dialog('longbeanDiseaseIdentifier', [
       case 0:
         // Initiate "Search By Day" dialog
         currentDisease= 'Nitrogen Deficiency';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
         currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 2:
         // Initiate "Search By Time" dialog
         currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
     }
   }
@@ -1593,17 +1702,17 @@ bot.dialog('pumpkinDiseaseIdentifier', [
       case 0:
         // Initiate "Search By Day" dialog
         currentDisease= 'Nitrogen Deficiency';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
         currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 2:
         // Initiate "Search By Time" dialog
         currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
     }
   }
@@ -1617,7 +1726,7 @@ bot.dialog('cabbageDiseaseIdentifier', [
       attachments: [
           {
               contentType: 'image/jpeg',
-              contentUrl:'https://www.apsnet.org/publications/imageresources/PublishingImages/2013/fi00197.jpg',
+              contentUrl:'http://www.pestnet.org/fact_sheets/assets/image/chinese_cabbage_flea_beetle_166/chcabbagephyllotreta.jpg',
               name: 'okra'
           }
       ]});
@@ -1626,7 +1735,7 @@ bot.dialog('cabbageDiseaseIdentifier', [
       attachments: [
           {
               contentType: 'image/jpeg',
-              contentUrl:'http://www.pakissan.com/english/allabout/horticulture/images/okra01.jpg',
+              contentUrl:'http://eorganic.info/sites/eorganic.info/files/u302/other%20cabbage.JPG',
               name: 'okra'
           }
       ]});
@@ -1635,7 +1744,7 @@ bot.dialog('cabbageDiseaseIdentifier', [
       attachments: [
           {
               contentType: 'image/jpeg',
-              contentUrl:'http://www.infonet-biovision.org/sites/default/files/plant_health/cropsfruitsvegetables/1522_0.jpeg',
+              contentUrl:'http://www.pestnet.org/fact_sheets/assets/image/chinese_cabbage_stalk_rot_101/cinesecabwithbactrot.jpg',
               name: 'okra'
           }
       ]});
@@ -1648,18 +1757,18 @@ bot.dialog('cabbageDiseaseIdentifier', [
     switch (results.response.index) {
       case 0:
         // Initiate "Search By Day" dialog
-        currentDisease= 'Nitrogen Deficiency';
-        session.beginDialog('diseaseInfoGeneral');
+        currentPest= 'Flea Beetle';
+        session.beginDialog('pestInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
         currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 2:
         // Initiate "Search By Time" dialog
-        currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        currentDisease= 'Stalk Rot';
+        session.beginDialog('diseaseInfoIdentifier');
         break;
     }
   }
@@ -1705,17 +1814,17 @@ bot.dialog('chilliDiseaseIdentifier', [
       case 0:
         // Initiate "Search By Day" dialog
         currentDisease= 'Nitrogen Deficiency';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
         currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 2:
         // Initiate "Search By Time" dialog
         currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
     }
   }
@@ -1761,17 +1870,17 @@ bot.dialog('pawpawDiseaseIdentifier', [
       case 0:
         // Initiate "Search By Day" dialog
         currentDisease= 'Nitrogen Deficiency';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
         currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 2:
         // Initiate "Search By Time" dialog
         currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
     }
   }
@@ -1785,7 +1894,7 @@ bot.dialog('tomatoDiseaseIdentifier', [
       attachments: [
           {
               contentType: 'image/jpeg',
-              contentUrl:'https://www.apsnet.org/publications/imageresources/PublishingImages/2013/fi00197.jpg',
+              contentUrl:'http://www.pestnet.org/fact_sheets/assets/image/tomato_early_blight_211/alternariasol1.jpg',
               name: 'okra'
           }
       ]});
@@ -1794,40 +1903,26 @@ bot.dialog('tomatoDiseaseIdentifier', [
       attachments: [
           {
               contentType: 'image/jpeg',
-              contentUrl:'http://www.pakissan.com/english/allabout/horticulture/images/okra01.jpg',
-              name: 'okra'
-          }
-      ]});
-    session.send({
-      text: 'Photo 3',
-      attachments: [
-          {
-              contentType: 'image/jpeg',
-              contentUrl:'http://www.infonet-biovision.org/sites/default/files/plant_health/cropsfruitsvegetables/1522_0.jpeg',
+              contentUrl:'http://www.pestnet.org/fact_sheets/assets/image/tomato_early_blight_211/alternariasolfruit.jpg',
               name: 'okra'
           }
       ]});
       next();
   },
   function (session) {
-    builder.Prompts.choice(session, 'Which photo does it look like most?(Tell me 1, 2 or 3)', ['Photo 1', 'Photo 2', 'Photo 3', 'Photo 4'])
+    builder.Prompts.choice(session, 'Which photo does it look like most?(Tell me 1, 2 or 3)', ['Photo 1', 'Photo 2'])
   },
   function (session, results) {
     switch (results.response.index) {
       case 0:
         // Initiate "Search By Day" dialog
-        currentDisease= 'Nitrogen Deficiency';
-        session.beginDialog('diseaseInfoGeneral');
+        currentDisease= 'Early Blight';
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
-        currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
-        break;
-      case 2:
-        // Initiate "Search By Time" dialog
-        currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        currentDisease= 'Early Blight';
+        session.beginDialog('diseaseInfoIdentifier');
         break;
     }
   }
@@ -1873,17 +1968,17 @@ bot.dialog('cucumberDiseaseIdentifier', [
       case 0:
         // Initiate "Search By Day" dialog
         currentDisease= 'Nitrogen Deficiency';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
         currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 2:
         // Initiate "Search By Time" dialog
         currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
     }
   }
@@ -1929,17 +2024,17 @@ bot.dialog('cowpeasDiseaseIdentifier', [
       case 0:
         // Initiate "Search By Day" dialog
         currentDisease= 'Nitrogen Deficiency';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
         currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 2:
         // Initiate "Search By Time" dialog
         currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
     }
   }
@@ -1985,17 +2080,17 @@ bot.dialog('yamsDiseaseIdentifier', [
       case 0:
         // Initiate "Search By Day" dialog
         currentDisease= 'Nitrogen Deficiency';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
         currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 2:
         // Initiate "Search By Time" dialog
         currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
     }
   }
@@ -2041,17 +2136,17 @@ bot.dialog('tobaccoDiseaseIdentifier', [
       case 0:
         // Initiate "Search By Day" dialog
         currentDisease= 'Nitrogen Deficiency';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
         currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 2:
         // Initiate "Search By Time" dialog
         currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
     }
   }
@@ -2097,17 +2192,17 @@ bot.dialog('cassavaDiseaseIdentifier', [
       case 0:
         // Initiate "Search By Day" dialog
         currentDisease= 'Nitrogen Deficiency';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 1:
         // Initiate "Search By Time" dialog
         currentDisease= 'Black Spot';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
       case 2:
         // Initiate "Search By Time" dialog
         currentDisease= 'Anthracnose';
-        session.beginDialog('diseaseInfoGeneral');
+        session.beginDialog('diseaseInfoIdentifier');
         break;
     }
   }
@@ -2133,6 +2228,32 @@ bot.dialog('pestGeneral', [
 bot.dialog('pestInfoGeneral', [
   function(session, results) {
       builder.Prompts.choice(session, 'What would you like to know about ' + currentPest + '?' , ['Symptoms', 'Treatments', 'Common Crops', 'Prevention']);
+    },
+    function (session, results) {
+      switch (results.response.index) {
+        case 0:
+          // Initiate "Search By Day" dialog
+          session.send(pestSymptomsArray[currentPest]);
+          break;
+          case 1:
+          // Initiate "Search By Name" dialog
+          session.send(pestTreatmentsArray[currentPest]);
+          break;
+          case 2:
+          // Initiate "Search By Name" dialog
+          session.send(pestCommonCropsInformationArray[currentPest]);
+          break;
+          case 3:
+          // Initiate "Search By Name" dialog
+          session.send(pestPreventionInformationArray[currentPest]);
+          break;
+        }
+      }
+])
+
+bot.dialog('pestInfoIdentifier', [
+  function(session, results) {
+      builder.Prompts.choice(session, 'It seems you could potentially have ' + currentPest + '. What would you like to know about ' + currentPest , ['Symptoms', 'Treatments', 'Common Crops', 'Prevention']);
     },
     function (session, results) {
       switch (results.response.index) {
